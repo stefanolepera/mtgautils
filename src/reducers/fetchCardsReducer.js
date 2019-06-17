@@ -12,7 +12,8 @@ export const fetchCardsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 fetchCardsStarted: true,
-                fetchCardsError: ''
+                fetchCardsError: '',
+                cardsList: []
             };
         case FETCH_CARDS_ERROR:
             console.log('action.payload', action.payload);
