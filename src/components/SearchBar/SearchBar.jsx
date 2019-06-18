@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { fetchCards } from '../../actions/fetchCardsAction';
+import { STANDARD_LEGAL } from '../../utils/constants';
 
 const StyledInput = styled.input`
     border: none;
@@ -17,12 +20,16 @@ const StyledInput = styled.input`
     }
 `;
 
-const SearchBar = ({ handleOnChange }) => {
+const SearchBar = () => {
+    const dispatch = useDispatch();
     const [cardName, setCardName] = useState('');
 
     useEffect(() => {
-        handleOnChange(cardName);
-    }, [handleOnChange, cardName]);
+        cardName.length === 0 && dispatch(fetchCards(STANDARD_LEGAL));
+
+        cardName.length >= 2 &&
+            dispatch(fetchCards(`${cardName}${STANDARD_LEGAL}`));
+    }, [dispatch, cardName]);
 
     return (
         <StyledInput

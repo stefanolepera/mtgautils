@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import CardImage from '../CardImage/';
+import { CardImage } from '../../components';
 
 const StyledCard = styled.div`
     padding: 2px 2px;
@@ -8,12 +8,10 @@ const StyledCard = styled.div`
     height: 240px;
 `;
 
-const Card = ({ card }) => {
-    return (
-        <StyledCard>
-            <CardImage card={card} />
-        </StyledCard>
-    );
-};
+const Card = ({ card }) => (
+    <StyledCard>
+        <CardImage card={card} />
+    </StyledCard>
+);
 
 export default Card;

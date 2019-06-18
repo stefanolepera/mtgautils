@@ -1,10 +1,9 @@
-import React, { useEffect, useCallback, Fragment } from 'react';
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCards } from '../../actions/fetchCardsAction';
-import styled from 'styled-components';
-import Card from '../../components/Card';
-import SearchBar from '../../components/SearchBar';
-import Spinner from '../../components/Spinner';
+import { Card, SearchBar, Spinner } from '../../components';
+import { STANDARD_LEGAL } from '../../utils/constants';
 
 const StyledCardsContainer = styled.div`
     display: flex;
@@ -19,22 +18,12 @@ const DeckBuilderScreen = () => {
     const cards = useSelector(state => state.cards.cardsList);
 
     useEffect(() => {
-        dispatch(fetchCards('legal%3Astandard&order=color'));
+        dispatch(fetchCards(STANDARD_LEGAL));
     }, [dispatch]);
 
-    const handleOnChange = useCallback(
-        cardName => {
-            cardName.length >= 2 &&
-                dispatch(
-                    fetchCards(`${cardName}+legal%3Astandard&order=color`)
-                );
-        },
-        [dispatch]
-    );
-
     return (
-        <Fragment>
-            <SearchBar handleOnChange={handleOnChange} />
+        <>
+            <SearchBar />
             {isLoading && <Spinner />}
             <p>{isError}</p>
             <StyledCardsContainer>
@@ -43,7 +32,7 @@ const DeckBuilderScreen = () => {
                         <Card key={JSON.stringify(card.name)} card={card} />
                     ))}
             </StyledCardsContainer>
-        </Fragment>
+        </>
     );
 };
 
