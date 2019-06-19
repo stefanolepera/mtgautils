@@ -6,11 +6,11 @@ import { STANDARD_LEGAL } from '../../utils/constants';
 
 const StyledInput = styled.input`
     border: none;
-    padding: 0 10px;
+    padding: px 5px;
     margin: 0 auto;
-    font-size: 1.2em;
-    width: 600px;
-    height: 40px;
+    font-size: 1em;
+    width: 400px;
+    height: 30px;
     color: #000;
     background: #ccc;
     border-radius: 4px;
@@ -20,25 +20,27 @@ const StyledInput = styled.input`
     }
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ type }) => {
     const dispatch = useDispatch();
-    const [cardName, setCardName] = useState('');
+    const isTypeCard = type === 'card';
+    const [searchName, setSearchName] = useState('');
+    const queryPrefix = isTypeCard ? '' : 'type%3A';
 
     useEffect(() => {
-        cardName.length === 0 && dispatch(fetchCards(STANDARD_LEGAL));
+        searchName.length === 0 && dispatch(fetchCards(STANDARD_LEGAL));
 
-        cardName.length >= 2 &&
-            dispatch(fetchCards(`${cardName}${STANDARD_LEGAL}`));
-    }, [dispatch, cardName]);
+        searchName.length >= 2 &&
+            dispatch(fetchCards(`${queryPrefix}${searchName}${STANDARD_LEGAL}`));
+    }, [dispatch, searchName, queryPrefix]);
 
     return (
         <StyledInput
             type="text"
-            name="cardName"
-            placeholder="Search Card"
-            onChange={e => setCardName(e.target.value)}
-            value={cardName}
-            autoFocus
+            name="searchName"
+            placeholder={isTypeCard ? 'Search Card' : 'Search Type'}
+            onChange={e => setSearchName(e.target.value)}
+            value={searchName}
+            autoFocus={isTypeCard}
         />
     );
 };

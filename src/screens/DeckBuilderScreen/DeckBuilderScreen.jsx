@@ -17,13 +17,27 @@ const DeckBuilderScreen = () => {
     const isError = useSelector(state => state.cards.fetchCardsError);
     const cards = useSelector(state => state.cards.cardsList);
 
+    const readFrom = () => navigator.clipboard.readText().then(clipText =>
+        console.log('clipboard ', clipText));
+
+    const copyTo = (newClip) => navigator.clipboard.writeText(newClip).then(() => {
+        console.log('write successful');
+      }, () => {
+        console.log('Write failed');
+      });
+
+    const stuffToCopy = 'copiamo due cazzate';
+
     useEffect(() => {
         dispatch(fetchCards(STANDARD_LEGAL));
     }, [dispatch]);
 
     return (
         <>
-            <SearchBar />
+            <SearchBar type='card' />
+            <SearchBar type='type' />
+            <button onClick={() => copyTo(stuffToCopy)}>copy to clipboard</button>
+            <button onClick={() => readFrom()}>read from clipboard</button>
             {isLoading && <Spinner />}
             <p>{isError}</p>
             <StyledCardsContainer>
