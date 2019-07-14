@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import HomeScreen from '../screens/HomeScreen';
-import DeckBuilderScreen from '../screens/DeckBuilderScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
+import Home from './Home';
+import DeckBuilder from './DeckBuilder';
+import NotFound from './NotFound';
 import { Header } from '../components';
 
 const Router = () => (
@@ -10,13 +10,9 @@ const Router = () => (
         <>
             <Header />
             <Switch>
-                <Route exact path="/" component={HomeScreen} />
-                <Route
-                    exact
-                    path="/deckbuilder/:id?"
-                    component={DeckBuilderScreen}
-                />
-                <Route component={NotFoundScreen} />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/deckbuilder/:id?" component={DeckBuilder} />
+                <Route component={NotFound} />
             </Switch>
         </>
     </BrowserRouter>
