@@ -1,7 +1,7 @@
 import React from 'react';
 
-const NotFoundScreen = () => {
+const NotFound = () => {
     return <div>Page NotFound</div>;
 };
 
-export default NotFoundScreen;
+export default NotFound;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { fetchCards } from '../../actions/fetchCardsAction';
-import { STANDARD_LEGAL } from '../../utils/constants';
+import { fetchCards } from '../../../actions/fetchCardsAction';
+import { STANDARD_LEGAL } from '../../../utils/constants';
 
 const StyledInput = styled.input`
     border: none;
@@ -30,7 +30,9 @@ const SearchBar = ({ type }) => {
         searchName.length === 0 && dispatch(fetchCards(STANDARD_LEGAL));
 
         searchName.length >= 2 &&
-            dispatch(fetchCards(`${queryPrefix}${searchName}${STANDARD_LEGAL}`));
+            dispatch(
+                fetchCards(`${queryPrefix}${searchName}${STANDARD_LEGAL}`)
+            );
     }, [dispatch, searchName, queryPrefix]);
 
     return (

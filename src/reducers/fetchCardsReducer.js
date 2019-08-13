@@ -4,6 +4,7 @@ const initialState = {
     fetchCardsStarted: false,
     fetchCardsError: '',
     cardsList: [],
+    memberId: 0
 }
 
 export const fetchCardsReducer = (state = initialState, action) => {
@@ -28,6 +29,12 @@ export const fetchCardsReducer = (state = initialState, action) => {
                 fetchCardsStarted: false,
                 fetchCardsError: '',
                 cardsList: action.payload
+            };
+        case 'SET_USER':
+            const { m } = action.payload
+            return {
+                ...state,
+                memberId: m
             };
         default:
             return {
