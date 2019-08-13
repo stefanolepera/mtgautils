@@ -13,7 +13,7 @@ export const fetchCardsEpic = ($action) => $action.pipe(
             map(response => fetchCardsCompleted(response.data)),
             catchError(error => of({
                 type: FETCH_CARDS_ERROR,
-                payload: error.response.details
+                payload: error.response ? error.response.details : 'Network Error!'
             }))
         )
     )

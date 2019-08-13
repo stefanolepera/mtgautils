@@ -26,7 +26,7 @@ const DeckBuilderScreen = () => {
         console.log('Write failed');
       });
 
-    const stuffToCopy = 'copiamo due cazzate';
+    const stuffToCopy = 'copiamo due cazzate!';
 
     useEffect(() => {
         dispatch(fetchCards(STANDARD_LEGAL));
