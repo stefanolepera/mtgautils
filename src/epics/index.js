@@ -1,7 +1,6 @@
 import { combineEpics } from 'redux-observable';
-import { fetchCardsEpic, tryEpic } from './fetchCardsEpic';
+import { fetchCardsEpic } from './fetchCardsEpic';
 
 export default combineEpics(
-    fetchCardsEpic,
-    tryEpic
+    fetchCardsEpic
 );

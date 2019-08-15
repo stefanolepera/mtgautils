@@ -12,11 +12,3 @@ export const fetchCardsError = payload => ({
     type: FETCH_CARDS_ERROR, payload 
 });
 
-export const getUserAction = payload => ({
-    type: 'GET_USER', payload
-});
-
-export const setUserAction = payload => ({
-    type: 'SET_USER', payload
-});
-
